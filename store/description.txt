@@ -1,0 +1,22 @@
+Transform your GitHub contribution graph into a heartbeat.
+
+ECGithub replaces the standard contribution heatmap on GitHub profile pages with a real-time ECG (electrocardiogram) waveform visualization. More contributions = taller heartbeat peaks.
+
+FEATURES
+• ECG heartbeat waveform — your contributions visualized as QRS+T peaks
+• 5 color themes + custom color picker
+• Stats panel — total, best day, average, streaks
+• 3 view modes — Normal / ECG / Both
+• Year switching — updates automatically
+• PNG export — save and share your heartbeat
+• Light & dark mode support
+• Zero external dependencies
+
+HOW IT WORKS
+The extension reads your GitHub contribution data and converts it into SVG paths using a waveform algorithm inspired by real ECG signals. No data is collected or sent anywhere — everything runs locally in your browser.
+
+PERMISSIONS
+• Storage — saves your theme preferences
+• github.com — reads contribution graph data (no other sites)
+
+Open source: https://github.com/theorakim/ecgithub

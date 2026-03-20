@@ -1,0 +1,407 @@
+/* ==========================================================================
+   ECGitHub Styles
+   - ECG line, tooltips, stats panel, legend
+   ========================================================================== */
+
+/* --- ECG SVG Container --- */
+.ecg-container {
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.ecg-svg {
+  width: 100%;
+  height: 128px;
+  display: block;
+}
+
+/* --- ECG Line --- */
+.ecg-line {
+  fill: none;
+  stroke: var(--ecg-line-color, #39d353);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- Peak Dots (hover targets) --- */
+.ecg-peak-dot {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+
+.ecg-peak-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ecg-line-color, #39d353);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.ecg-peak-dot:hover::after,
+.ecg-peak-dot:focus::after {
+  opacity: 1;
+}
+
+/* --- Tooltips --- */
+.ecg-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(var(--ecg-tooltip-offset, -50%), 6px);
+  background: var(--ecg-tooltip-bg, #1b1f23);
+  color: var(--ecg-tooltip-color, #e6edf3);
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  pointer-events: none;
+  z-index: 10;
+  line-height: 1.4;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ecg-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-bottom-color: var(--ecg-tooltip-bg, #1b1f23);
+}
+
+.ecg-peak-dot:hover .ecg-tooltip,
+.ecg-peak-dot:focus .ecg-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ecg-tooltip__count {
+  display: block;
+  font-weight: 600;
+}
+
+.ecg-tooltip__date {
+  display: block;
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 1px;
+}
+
+/* --- Stats Panel --- */
+.ecg-stats-panel {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: var(--ecg-stats-color, #e6edf3);
+}
+
+.ecg-stats-block {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--ecg-stats-border, #30363d);
+  border-radius: 6px;
+  background: var(--ecg-stats-bg, rgba(22, 27, 34, 0.5));
+  color: var(--ecg-stats-color, #e6edf3);
+}
+
+.ecg-stats-block__title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+
+.ecg-stats-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ecg-stats-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 60px;
+}
+
+.ecg-stats-item__value {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ecg-line-color, #39d353);
+}
+
+.ecg-stats-item__label {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* --- Legend --- */
+.ecg-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--ecg-stats-color, #8b949e);
+}
+
+.ecg-legend__label {
+  margin: 0 2px;
+}
+
+.ecg-legend__item {
+  display: inline-block;
+}
+
+.ecg-legend__item svg {
+  display: block;
+  height: 14px;
+  width: 28px;
+}
+
+.ecg-legend__item .ecg-legend-wave {
+  fill: none;
+  stroke: var(--ecg-line-color, #39d353);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+/* --- Light mode overrides --- */
+/* GitHub uses data-color-mode on <html>: "light", "dark", or "auto" */
+[data-color-mode="light"] .ecg-tooltip,
+html:not([data-color-mode="dark"]) .ecg-tooltip {
+  --ecg-tooltip-bg: #24292f;
+  --ecg-tooltip-color: #f0f6fc;
+}
+
+[data-color-mode="light"] .ecg-stats-panel,
+html:not([data-color-mode="dark"]) .ecg-stats-panel {
+  --ecg-stats-color: #24292f;
+}
+
+[data-color-mode="light"] .ecg-stats-block,
+html:not([data-color-mode="dark"]) .ecg-stats-block {
+  --ecg-stats-border: #d0d7de;
+  --ecg-stats-bg: rgba(246, 248, 250, 0.7);
+  --ecg-stats-color: #24292f;
+}
+
+[data-color-mode="light"] .ecg-legend,
+html:not([data-color-mode="dark"]) .ecg-legend {
+  --ecg-stats-color: #57606a;
+}
+
+/* --- Pulse dot (live ECG monitor) --- */
+.ecg-pulse-dot {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.ecg-pulse-dot--hidden {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+.ecg-pulse-dot--alive {
+  opacity: 1;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: ecg-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes ecg-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(0.4); }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .ecg-peak-dot {
+    transition: none !important;
+  }
+
+  .ecg-tooltip {
+    transition: none !important;
+  }
+
+  .ecg-line {
+    transition: none !important;
+  }
+
+  .ecg-pulse-dot--alive {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+
+/* --- Toggle button (Normal / ECG) --- */
+.ecg-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--ecg-stats-border, #30363d);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.ecg-toggle__btn {
+  padding: 4px 10px;
+  border: none;
+  background: transparent;
+  color: var(--ecg-stats-color, #8b949e);
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ecg-toggle__btn:not(:last-child) {
+  border-right: 1px solid var(--ecg-stats-border, #30363d);
+}
+
+.ecg-toggle__btn.is-active {
+  background: var(--ecg-line-color, #39d353);
+  color: #fff;
+}
+
+.ecg-toggle__btn:hover:not(.is-active) {
+  background: var(--ecg-stats-bg, rgba(22, 27, 34, 0.5));
+}
+
+/* ==========================================================================
+   Content Script Styles (toggle wrapper, export, animation)
+   ========================================================================== */
+
+/* --- ECG Wrapper (content.js container) --- */
+.ecgithub-wrapper {
+  position: relative;
+  margin-top: 8px;
+  padding: 8px 0;
+  border-radius: 6px;
+}
+
+.ecgithub-placeholder {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--fgColor-muted, #848d97);
+  font-size: 14px;
+}
+
+/* --- Toggle Button Wrapper --- */
+.ecgithub-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.ecgithub-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--fgColor-muted, #848d97);
+  background-color: var(--bgColor-default, #0d1117);
+  border: 1px solid var(--borderColor-default, #30363d);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+}
+
+.ecgithub-toggle-btn:hover {
+  color: var(--fgColor-default, #e6edf3);
+  background-color: var(--bgColor-muted, #161b22);
+  border-color: var(--borderColor-muted, #484f58);
+}
+
+.ecgithub-toggle-btn:active {
+  background-color: var(--bgColor-inset, #010409);
+}
+
+/* --- Export Button --- */
+.ecgithub-export-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--fgColor-muted, #848d97);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.ecgithub-export-btn:hover {
+  color: var(--fgColor-default, #e6edf3);
+  background-color: var(--bgColor-muted, #161b22);
+  border-color: var(--borderColor-default, #30363d);
+}
+
+.ecgithub-export-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* --- ECG Draw Animation --- */
+@keyframes ecg-draw {
+  from {
+    stroke-dashoffset: var(--ecg-path-length, 5000);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ecgithub-path-animated {
+  stroke-dasharray: var(--ecg-path-length, 5000);
+  stroke-dashoffset: var(--ecg-path-length, 5000);
+  animation: ecg-draw 2s ease-in-out forwards;
+}
+
+/* --- Hide element (used by view mode toggle) --- */
+.ecgithub-hidden {
+  display: none !important;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .ecgithub-toggle-wrapper {
+    top: 4px;
+    right: 4px;
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECGithub Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup">
+    <!-- Header with on/off toggle -->
+    <header class="popup-header">
+      <img src="../icons/icon48.png" alt="" width="24" height="24" class="popup-logo">
+      <h1 class="popup-title">ECGithub</h1>
+      <label class="toggle-switch toggle-switch--header">
+        <input type="checkbox" id="enabledToggle" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </header>
+
+    <!-- Color Theme -->
+    <section class="popup-section">
+      <h2 class="popup-section-title">Color Theme</h2>
+      <div class="theme-grid" id="themeGrid">
+        <button class="theme-btn is-active" data-theme="github-green" title="GitHub Green">
+          <span class="theme-preview">
+            <span class="swatch" style="background:#ebedf0"></span>
+            <span class="swatch" style="background:#9be9a8"></span>
+            <span class="swatch" style="background:#40c463"></span>
+            <span class="swatch" style="background:#30a14e"></span>
+            <span class="swatch" style="background:#216e39"></span>
+          </span>
+          <span class="theme-name">GitHub Green</span>
+        </button>
+        <button class="theme-btn" data-theme="blue" title="Blue">
+          <span class="theme-preview">
+            <span class="swatch" style="background:#ebedf0"></span>
+            <span class="swatch" style="background:#9ecae1"></span>
+            <span class="swatch" style="background:#4292c6"></span>
+            <span class="swatch" style="background:#2171b5"></span>
+            <span class="swatch" style="background:#084594"></span>
+          </span>
+          <span class="theme-name">Blue</span>
+        </button>
+        <button class="theme-btn" data-theme="purple" title="Purple">
+          <span class="theme-preview">
+            <span class="swatch" style="background:#ebedf0"></span>
+            <span class="swatch" style="background:#b4a7d6"></span>
+            <span class="swatch" style="background:#8e7cc3"></span>
+            <span class="swatch" style="background:#674ea7"></span>
+            <span class="swatch" style="background:#351c75"></span>
+          </span>
+          <span class="theme-name">Purple</span>
+        </button>
+        <button class="theme-btn" data-theme="sunset" title="Sunset">
+          <span class="theme-preview">
+            <span class="swatch" style="background:#ebedf0"></span>
+            <span class="swatch" style="background:#fdd49e"></span>
+            <span class="swatch" style="background:#fdbb84"></span>
+            <span class="swatch" style="background:#fc8d59"></span>
+            <span class="swatch" style="background:#d7301f"></span>
+          </span>
+          <span class="theme-name">Sunset</span>
+        </button>
+        <button class="theme-btn" data-theme="halloween" title="Halloween">
+          <span class="theme-preview">
+            <span class="swatch" style="background:#ebedf0"></span>
+            <span class="swatch" style="background:#ffee4a"></span>
+            <span class="swatch" style="background:#ffc501"></span>
+            <span class="swatch" style="background:#fe9600"></span>
+            <span class="swatch" style="background:#03001c"></span>
+          </span>
+          <span class="theme-name">Halloween</span>
+        </button>
+      </div>
+
+      <!-- Custom Color -->
+      <div class="custom-color-row">
+        <label class="custom-color-label" for="customColor">Custom line color</label>
+        <input type="color" id="customColor" class="custom-color-input" value="#40c463">
+        <button id="applyCustomColor" class="btn-small">Apply</button>
+        <button id="clearCustomColor" class="btn-small btn-muted">Clear</button>
+      </div>
+    </section>
+
+    <!-- Toggles -->
+    <section class="popup-section">
+      <h2 class="popup-section-title">Display</h2>
+      <div class="toggle-row">
+        <label class="toggle-label" for="animationToggle">Animation</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="animationToggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label class="toggle-label" for="statsToggle">Stats Panel</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="statsToggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <span class="popup-version">v1.0.0</span>
+      <span class="popup-footer-sep">·</span>
+      <a href="https://byminseok.com" target="_blank" rel="noopener" class="popup-footer-link">byminseok.com</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "ECGithub - Contribution Graph Heartbeat",
+  "version": "1.0.0",
+  "description": "Transform your GitHub contribution graph into an ECG heartbeat visualization",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": [
+        "src/ecg-engine.js",
+        "src/ecg-stats.js",
+        "src/ecg-legend.js",
+        "src/ecg-export.js",
+        "src/content.js"
+      ],
+      "css": ["src/ecg-styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

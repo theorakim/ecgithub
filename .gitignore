@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Development workspace (analysis docs, drafts)
+workspace/
+_workspace/
+
+# Claude Code
+.claude/
+
+# Icon generators (keep the PNGs, not the generators)
+icons/generate-icons.html
+icons/generate_icons.py
+
+# Package archives
+*.zip
+*.crx
+*.pem
