@@ -15,6 +15,7 @@ _workspace/
 
 # Claude Code
 .claude/
+CLAUDE.md
 
 # Icon generators (keep the PNGs, not the generators)
 icons/generate-icons.html
