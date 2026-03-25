@@ -18,7 +18,7 @@ Transform your GitHub contribution graph into an ECG heartbeat visualization.
 ## Install
 
 ### Chrome Web Store
-Coming soon.
+[ECGithub - Contribution Graph Heartbeat](https://chromewebstore.google.com/detail/ecgithub-contribution-gra/cbnmkcffifimliglenmbldfeplholdle)
 
 ### Manual Install
 1. Download or clone this repo
